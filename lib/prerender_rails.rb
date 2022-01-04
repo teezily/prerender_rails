@@ -195,8 +195,7 @@ module Rack
         if connection
           connection_hop_by_hop_headers = connection.split(',').
                                             map(&:strip).
-                                            map(&:downcase).
-                                            difference(@connection_header_values)
+                                            map(&:downcase) - @connection_header_values
           hop_by_hop_headers = connection_hop_by_hop_headers.
                                  concat(hop_by_hop_headers)
         end
